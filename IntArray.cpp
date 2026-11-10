@@ -2,6 +2,7 @@
 #include"IntArray.h"
 
 
+
 IntArray::IntArray(int newSize) {
     if (newSize < 0){
         newSize = 0;
@@ -32,36 +33,37 @@ void IntArray::set(int index, int value) {
         return;
     }
     data[index] = value;
-
 }
 
 int IntArray::get(int index) {
     if (index < 0 || index >= size) {
         std::cout << "Error. Exit of range" << "\n";
         return 0;
-    }    
+    }
+    return data[index];    
 }
 
-IntArray::IntArray(const IntArray& other) {
-    size = other.size;
+//2
+IntArray::IntArray(const IntArray& orig) {
+    size = orig.size;
     data = new int[size]();
-    for (int i = 0; i < size; ++i) {
-        data[i] = other.data[i];
+    for (int i = 0; i < size; i++) {
+        data[i] = orig.data[i];
     }
 }
 
-// задание 3
+//3
 void IntArray::push_back(int value) {
     if (value < -100 || value > 100) {
-        std::cout << "Ошибка: значение " << value
-                  << " вне диапазона [-100, 100]\n";
+        std::cout << "Error off value " << value
+                  << " Exit of range [-100, 100]\n";
         return;
     }
 
     int newSize = size + 1;
     int* newData = new int[newSize]();
 
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
         newData[i] = data[i];
     }
 
@@ -71,11 +73,11 @@ void IntArray::push_back(int value) {
     size = newSize;
 }
 
-//задание 4
+//4
 void IntArray::add(const IntArray& other) {
     int limit = (size < other.size) ? size : other.size;
 
-    for (int i = 0; i < limit; ++i) {
+    for (int i = 0; i < limit; i++) {
         int result = data[i] + other.data[i];
         if (result > 100)  result = 100;
         if (result < -100) result = -100;
@@ -86,7 +88,7 @@ void IntArray::add(const IntArray& other) {
 void IntArray::sub(const IntArray& other) {
     int limit = (size < other.size) ? size : other.size;
 
-    for (int i = 0; i < limit; ++i) {
+    for (int i = 0; i < limit; i++) {
         int result = data[i] - other.data[i];
 
         if (result > 100)  result = 100;
@@ -95,8 +97,3 @@ void IntArray::sub(const IntArray& other) {
         data[i] = result;
     }
 }
-
-
-
-
-
