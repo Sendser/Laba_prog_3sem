@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 class IntArray {
 private:
@@ -7,24 +6,23 @@ private:
     int size;
 
 public:
-    void Print();
-
-    IntArray(int size);
+    explicit IntArray(int size);
 
     ~IntArray();
 
-    void set(int index, int value);
-
-    int get(int index);
-
     IntArray(const IntArray& other);
 
-    void push_back(int value);
+    void print() const;
+
+    void set(int index, int value);
+
+    int get(int index) const;
 
     int getSize() const;
 
-    void add(const IntArray& other);
-    
-    void sub(const IntArray& other);
+    void push_back(int value);
 
+    void add(const IntArray& other);
+
+    void sub(const IntArray& other);
 };
